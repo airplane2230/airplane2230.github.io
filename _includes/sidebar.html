@@ -9,28 +9,25 @@
   </div>
 
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}/">Home</a>
+    <a class="sidebar-nav-item{% if page.url == site.url %} active{% endif %}" href="{{ site.url }}/">Home</a>
 
     {% comment %}
-      The code below dynamically generates a sidebar nav of pages with
-      `layout: page` in the front-matter. See readme for usage.
+    The code below dynamically generates a sidebar nav of pages with
+    `layout: page` in the front-matter. See readme for usage.
     {% endcomment %}
 
     {% assign pages_list = site.pages | sort:"url" %}
     {% for node in pages_list %}
-      {% if node.title != null %}
-        {% if node.layout == "page" %}
-          <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
-        {% endif %}
-      {% endif %}
+    {% if node.title != null %}
+    {% if node.layout == "page" %}
+    <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title
+      }}</a>
+    {% endif %}
+    {% endif %}
     {% endfor %}
 
-    <a class="sidebar-nav-item" href="{{ site.github.repo }}/archive/v{{ site.version }}.zip">Download</a>
     <a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub project</a>
-    <span class="sidebar-nav-item">Currently v{{ site.version }}</span>
   </nav>
-
-  <!--# category -->
   <div>
     <div class="sidebar-nav-item">Category</div>
     <nav class="content-ul">
@@ -45,8 +42,6 @@
       {% endfor %}
     </nav>
   </div>
-
-  <!-- # tag -->
   <div>
     <div class="sidebar-nav-item">Tags</div>
     <div class="tags-cloud">
@@ -80,19 +75,30 @@
         {% assign size = base | plus: 10 %}
         {% endif %}
         {% if remain == 0 or remain == 1 %}
-        {% assign color = 9 | minus: base %}
+        {% assign color = 5 | plus: base %}
         {% else %}
-        {% assign color = 8 | minus: base %}
+        {% assign color = 6 | plus: base %}
         {% endif %}
-        <a href="{{ root_url }}/{{ site.tag_dir }}#{{ tag[0] }}" style="font-size: {{ size }}pt; color: #{{ 9 | minus: color }}{{ 9 | minus: color }}{{ 9 | minus: color }};">{{ tag[0] }}</a>
+
+        {% assign arr = "a, b, c, d, e, f" | split: ", " %}
+        {% if color > 9 %}
+        {% assign index = color | minus: 10 %}
+        {% assign color = arr[index] %}
+        {% endif %}
+        <a href="{{ root_url }}/{{ site.tag_dir }}#{{ tag[0] }}" style="font-size: {{ size }}pt; color: #{{ color }}{{ color }}{{ color }};">{{ tag[0] }}</a>
         {% endfor %}
       </div>
     </div>
   </div>
-
   <div class="sidebar-item">
     <p>
       &copy; {{ site.time | date: '%Y' }}. All rights reserved.
     </p>
   </div>
 </div>
+
+<script>
+  window.addEventListener('hashchange', function(){
+    location.reload();
+  });
+</script>
