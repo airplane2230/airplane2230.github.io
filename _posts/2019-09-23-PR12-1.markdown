@@ -8,7 +8,6 @@ categories: Abstract-Reading
 Abstract  
 We present a modality hallucination architecture for training an RGB object detection model which incorporates depth side information at training time. Our convolutional hallucination network learns a new and complementary RGB image representation which is taught to mimic convolutional mid-level features from a depth network. At test time images are processed jointly through the RGB and hallucination networks to produce improved detection performance. Thus, our method transfers information commonly extracted from depth training data to a network which can extract that information from the RGB counterpart. We present results on the standard NYUDv2 dataset and report improvement on the RGB detection task.<br>
 <hr>
-<br>
 <div>
 우리는 학습 시에 깊이 정보를 포함한 RGB 객체 탐지 모델의 학습을 위해 madality hallucination architecture방법을 소개한다.  
 컨볼루션 할루시네이션 네트워크는 깊이 네트워크로부터 컨볼루션의 중간 단계 feature들을 모방하기 위해 학습되는 새로운 그리고 보완적인 RGB 이미지 표현을 학습한다.  
