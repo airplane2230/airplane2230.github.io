@@ -16,7 +16,7 @@ We present a modality hallucination architecture for training an RGB object dete
 <center>##**요약**</center>  
 + 테스트를 진행할 때, Depth 정보가 없는 것이 문제이다. 그런데 이를 생성하기는 힘들고 매우 어렵다. 그래서 대응 방안으로 깊이 정보에 대한 특징을 미리 학습시켜놓고 이를 이용하는 것이다.  
 + 그래서 다음과 같은 모델을 만든다.   
-![modality-network][/img/2019-09-23-modality-network-1.png]  
-![modality-network2][/img/2019-09-23-modality-network-2.png]  
+![modalitynetwork][https://github.com/airplane2230/airplane2230.github.io/img/2019-09-23-modality-network-1.png]  
+![modalitynetwork2][https://github.com/airplane2230/airplane2230.github.io/img/2019-09-23-modality-network-2.png]  
 위의 모델에서 테스트 시에는 깊이 정보가 없어 빨간 네트워크가 없다.  
 따라서, 파란색 네트워크를 빨간색 네트워크와 최대한 같게 만들어 이를 테스트시에 활용하여 깊이정보를 생성해낸다.  
