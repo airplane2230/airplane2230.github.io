@@ -4,6 +4,7 @@ title:  "Inside Tensorflow:Control Flow(텐서플로우 내부 흐름)"
 date:   2019-09-27 17:00:00
 categories: Inside-Tensorflow
 ---
+
 이 글은 다음 텐서플로우 유튜브 동영상을 공부하면서 끄적끄적한 글입니다.
 ['Inside Tensorlfow:Control Flow'](https://www.youtube.com/watch?v=IzKXEbpT9Lg&list=PLQY2H8rRoyvzIuB8rZXs7pfyjiSUs8Vza){: target="_blank" }
 <hr>
