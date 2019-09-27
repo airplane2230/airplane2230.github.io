@@ -2,36 +2,38 @@
 layout: post
 title:  "Inside Tensorflow:Control Flow(텐서플로우 내부 흐름)"
 date:   2019-09-27 17:00:00
-categories: "Inside Tensorflow"
+categories: <p>Inside Tensorflow</p>
 ---
 이 글은 다음 텐서플로우 유튜브 동영상을 공부하면서 끄적끄적한 글입니다.
 ['Inside Tensorlfow:Control Flow'](https://www.youtube.com/watch?v=IzKXEbpT9Lg&list=PLQY2H8rRoyvzIuB8rZXs7pfyjiSUs8Vza){: target="_blank" }
 <hr>
 
 일단 이 동영상은 전체적으로 텐서플로우 내부의 흐름을 다루고, 이를 예를 들어 설명하고 있습니다.<br>
-Base API에서 사용되던 tf.cond, tf.while_loop는 Higher-level이나 Low-level API에서 따로 통용되는 함수가 존재합니다.<br>
+Base API에서 사용되던 `tf.cond, tf.while_loop`는 Higher-level이나 Low-level API에서 따로 통용되는 함수가 존재합니다.<br>
 하지만, tf 2.0으로 넘어오면서 "Functional" ops로 변경되어 If나 While문과 같이 파이썬 문법처럼 사용할 수 있게 되었습니다.<br>
-'(Eager Execution, Autograph)'<br>
-<h5>첫번쨰로 Control flow v1이라고 해서 low-ops에 대해 설명합니다.</h5> <br>
-영상에서는 'tf.cond(x < y, lambda: tf.add(x, z), lambda: tf.square(y))'와 몇 개의 예를 들면서 low-ops에서의 흐름을 설명합니다. 쉽게 예에 대해서 그래프의 흐름을 설명해주고 있습니다. 이를 구성하기 위해 대표적으로 Switch와 Merge의 표현을 사용하게 됩니다.<br>
+`(Eager Execution, Autograph)`<br>
+
+<h3>첫번쨰로 Control flow v1이라고 해서 low-ops에 대해 설명합니다.</h3> <br>
+
+영상에서는 `tf.cond(x < y, lambda: tf.add(x, z), lambda: tf.square(y))`와 몇 개의 예를 들면서 low-ops에서의 흐름을 설명합니다. 쉽게 예에 대해서 그래프의 흐름을 설명해주고 있습니다. 이를 구성하기 위해 대표적으로 Switch와 Merge의 표현을 사용하게 됩니다.<br>
 이것의 장점은 Pruning이 가능하고, dataflow만 잘 만들면된다. 하지만 분석이 어렵고 매우 복잡하다. 이를 매우 nested하다 라고 표현하고 있습니다. <br>
 <br>
-결과적으로 tf 내부적으로 어떻게 control flow가 구성되는지 'tf.cond(), tf.while_loop()'를 통해 설명하고 있는겁니다. 다음 사이트가 이를 잘 설명해주고 있습니다.<br>
+결과적으로 tf 내부적으로 어떻게 control flow가 구성되는지 `tf.cond(), tf.while_loop()`를 통해 설명하고 있는겁니다. 다음 사이트가 이를 잘 설명해주고 있습니다.<br>
 ['control flow v1에 대한 설명글'](https://towardsdatascience.com/tensorflow-control-flow-tf-cond-903e020e722a){: target="_blank" }<br>
 
 ![img]({{ site.url }}/img/2019-09-27-tf-control-flow-v1.png){: width="50%" height="50%"}
 <br>
 
-<h5>두번째로는 Control flow v2를 설명합니다.</h5><br>
+<h3>두번째로는 Control flow v2를 설명합니다.</h3><br>
 
 여기에서는 그래프가 좀 더 함수처럼 동작하는 것을 보여주고 있습니다. 특별한 점은 없으며 텐서플로우의 기본적인 표현입니다. 각각의 함수가 텐서 인풋과 텐서 아웃풋을 별개로 가지고 있고, 매우 simple해 졌습니다. <br>
 또한, v1에서는 true와 false가 매치되어 있다면, v2에서는 별개의 함수로 작용하는 것처럼 구성되어 있습니다.<br>
 
-<h5>세번째, Gradient입니다.</h5><br>
+<h3>세번째, Gradient입니다.</h3><br>
 
-'tf.cond, tf_while_loop'를 예로 들며, 이에 대해 내부적으로 gradient가 어떻게 만들어지는지 설명합니다. <br>
+`tf.cond, tf_while_loop`를 예로 들며, 이에 대해 내부적으로 gradient가 어떻게 만들어지는지 설명합니다. <br>
 
-**Control flow v2의 장점은 v1의 단점을 보완한다는 것입니다. 단순, 디버깅, 통합 등등.** <br>
+<b>Control flow v2의 장점은 v1의 단점을 보완한다는 것입니다. 단순, 디버깅, 통합 등등.</b> <br>
 하지만 이 때문에 성능적으로 좀 떨어진다는 단점이 생깁니다. 따라서 이에 대한 해결방법은 표현을 v2로 쓰되, 내부적으로 v1의 기능을 사용하여 성능과 속도를 동시에 잡는 것입니다. 이를 Lowering이라고 표현하고 있습니다. <br>
 ![img]({{ site.url }}/img/2019-09-27-tf-control-flow-v2.png){: width="50%" height="50%"}<br>
 
