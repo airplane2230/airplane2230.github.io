@@ -23,7 +23,6 @@ dataset = dataset.batch(batch_size = Y)
 for element in datset:
 	...
 ```
-<br>
 
 기존 tf 1.x와 다르게 매우 간단하게 정리되었습니다. eager execution이 본격적으로 사용되는 것처럼 위에서도 for-loop를 사용하여 데이터를 전달받을 수 있습니다. <br>
 기존의  tf 1.x에서는 iterator를 초기화 한 후 사용해야 하는 등 좀 더 복잡한 과정을 거쳤었습니다.
@@ -44,11 +43,11 @@ dataset = dataset.prefetch(buffer_size=...)
 
 for element in datset:
 	...
-```<br>
+```
+<br>
 
 supporting non-tensor types
 ======
-<br>
 텐서 타입이 아닌 타입을 다루기 위해서는 다음 이미지에 나오는 코드로 변환하여 tf.data를 사용할 수 있게 된다.
 
 ![img]({{ site.url }}/img/2019-10-03-tf.data-2.png){: width="50%" height="50%"}
@@ -91,4 +90,4 @@ Dynamic optimization
 첫 번째 질문과의 차이는 num_parallel_calls의 차이이다. background에서 서로 다른 커널에서 수행되는 것 같은데, 감이 잘 안온다. 아무튼 여러가지의 스레드를 만들어서 동시작업을 행한다고 생각하면 편하다. <br>
 하지만 맨 처음 element를 처리하는데 걸리는 시간은 첫 번째 문제와 같다는 것.
 
-num_parallel_calls의 수가 늘어날 수록 output latency도 줄어든다. 하지만 그 수가 늘어난다고 해서 매우 많은 수의 thread를 만든다는 의미는 아니고, 여러 작업의 schedule을 동시에 처리해서 그 시간을 줄인다는 의미인 것 같다. 
+num_parallel_calls의 수가 늘어날 수록 output latency도 줄어든다. 하지만 그 수가 늘어난다고 해서 매우 많은 수의 thread를 만든다는 의미는 아니고, 여러 작업의 schedule을 동시에 처리해서 그 시간을 줄인다는 의미인 것 같다.
