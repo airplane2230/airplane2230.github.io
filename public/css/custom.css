@@ -24,3 +24,8 @@
 .tags-cloud > div{
   background: #202020;
 }
+
+.center {
+  display: block;
+  margin: auto;
+}
