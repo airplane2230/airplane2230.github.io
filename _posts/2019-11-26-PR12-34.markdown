@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "PVANet: Lightweight Deep Neural Networks for Real-time Object Detection"
-date:   2019-10-29 17:00:00
+title:  "Inception and Xception"
+date:   2019-11-26 17:00:00
 categories: Abstract-Reading
 ---
 이번 글은 PR12의 유재준님께서 Inception과 Xception을 동시에 다루는 관계로 Abstract는 생략하고 바로 요약단계로 넘어가는 것으로 하겠습니다. PR12는 현재 Season 3까지 만들어져, 현재 진행중인 스터디입니다. 블로그에 게시되는 논문은 주로 Season 1에서 다루는 것들을 공부합니다. 이 글이 부족하다면 다음 유재준님께서 발표하신 영상을 보시면 되겠습니다. <br>
