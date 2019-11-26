@@ -22,4 +22,5 @@ categories: Abstract-Reading
 ![img]({{ site.url }}/img/pr12-34/3.png){: width="50%" height="50%"}{: .center}
 + 이후 Xception 논문에서는 Inception 모듈이 왜 잘되는지에 대해 분석해놓았는데, 첫 번쨰로는 1x1 컨볼루션과 다양한 크기의 컨볼루션을 사용하여 채널별 상관관계와 공간적 상관관계를 동시에 적절히 수행하였다는 점이다.
 + Xception은 inception 모듈을 'extreme'하게 표현한 것인데, 여기서 Depthwise separable convolution이라는 용어가 나오게 된다.
++ Depthwise separable convolution은 기존의 1x1 -> 3x3의 순서를 3x3 -> 1x1로 변경한 것이다. 이를 다시 말하면 먼저 channel-wise의 연산을 수행한 뒤, point-wise의 연산을 수행한다는 것이다.
 + Inception 모듈은 기존 컨볼루션 방식과 Xception 논문에서 나오는 Depthwise separable convolution의 중간 어딘가쯤 존재하는 것이었다. 즉, Xception은 채널, 공간적 관계를 완전히 쪼개서 수행해보겠다는 것이 가설이다.
