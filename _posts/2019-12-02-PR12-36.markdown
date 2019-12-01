@@ -1,0 +1,42 @@
+---
+layout: post
+title:  "Learning to Remember Rare Events"
+date:   2019-12-02 17:00:00
+categories: Abstract-Reading
+---
+ABSTRACT
+
+Despite recent advances, memory-augmented deep neural networks are still limited when it comes to life-long and one-shot learning, especially in remembering rare events. We present a large-scale life-long memory module for use in deep learning. The module exploits fast nearest-neighbor algorithms for efficiency and thus scales to large memory sizes. Except for the nearest-neighbor query, the module is fully differentiable and trained end-to-end with no extra supervision. It operates in a life-long manner, i.e., without the need to reset it during training.<br>
+
+Our memory module can be easily added to any part of a supervised neural network. To show its versatility we add it to a number of networks, from simple convolutional ones tested on image classification to deep sequence-to-sequence and recurrent-convolutional models. In all cases, the enhanced network gains the ability to remember and do life-long one-shot learning. Our module remembers training examples shown many thousands of steps in the past and it can successfully generalize from them. We set new state-of-the-art for one-shot learning on the Omniglot dataset and demonstrate, for the first time, life-long one-shot learning in recurrent neural networks on a large-scale machine translation task.
+<br>
+<hr>
+
+최근 기술 발전에도 불구하고, 깊은 신경망의 one-shot learning과 liefe-long learning에서는 여전히 희귀 이벤트에 대해서 제한적이다. <br>
+
+우리는 이를 딥러닝에서도 원활하게 사용할 수 있도록 하는 large-scale life-long memory module을 소개한다.<br>
+
+이 모듈은 효율성을 위한 빠른 최근접 이웃 알고리즘을 사용하여 큰 메모리 크기로 확장한다.<br>
+
+최근접 이웃 쿼리를 제외하고, 모듈은 완전히 미분가능하며 어떠한 감독 없이 엔드-투-엔드 방식으로 학습할 수 있다.<br>
+
+life-long의 관점에서 작동하며, 학습하는 동안 재설정이 필요하지 않다.<br>
+
+우리가 제안한 메모리 모듈은 지도학습에 쉽게 추가될 수 있다. <br>
+
+모듈의 다양성을 확인해보기 위해 이미지 분류에서 간단한 컨볼루션, 심층 시퀀스-시퀀스, 순환-컨볼루션 모델에 추가해본다.<br>
+
+모든 경우에서 life-long one-shot learning을 실현할 수 있었다.<br>
+
+이 모듈은 과거의 수천 단계에서 보았던 훈련 샘플을 기억하고, 이를 성공적으로 일반화할 수 있다. <br>
+
+우리는 Omniglot 데이터셋에서 이를 사용해보았고, 대규모 기계 번역 작업에서 순환신경망을 사용하여 이를 최초로 사용해보았다.<br>
+<hr>
+**<center>요약</center>**
++ 먼저 rare events란, 어떤 데이터셋에서 매우 희귀하게 나타나는 데이터를 의미한다.
++ 기존의 신경망은 이러한 rare evenets를 기억하기에는 그래디언트 기반에서 매우 학습이 느리기 때문에 잘 반영되지 않는 문제점이 있다. 따라서 이 논문의 핵심은 신경망에 메모리 모듈을 합친다는 것이다.
+![img]({{ site.url }}/img/36/1.png){: width="50%" height="50%"}{: .center}
++ 메모리 모듈은 Key(신경망의 활성화 층 값), Value(Ground Truth의 레이블), Age(실제 이 아이템이 어느정도 저장되어 있는지 추적될 수 있도록 하는 값)으로 이루어져 있다.
++ 메모리를 사용하기 위해 쿼리를 날리는데, 여기서 쿼리는 key-size만큼의 벡터를 의마한다.
++ 메모리 모듈의 학습과 업데이트는 맞은 경우, 틀린 경우로 나뉘어진다. 맞은 경우는 키값과 쿼리를 합쳐서 새로 업데이트를 하고, 틀린 경우는 여유 공간을 찾아서 ﻿그곳의 K, V, A를 다시 계산한다.
++ 이 모듈은 어려운 문자로 구성되어 있는 omniglot 데이터셋과 번역에서 좋은 성능을 보여주었으며, 여러 레이어에 연결하여 편리하게 사용할 수 있다.
